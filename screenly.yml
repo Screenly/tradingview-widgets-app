@@ -4,7 +4,7 @@ description: Full-screen TradingView market widgets (Advanced Chart, Symbol Over
 icon: static/img/icon.svg
 author: Screenly, Inc.
 categories:
-- Finance
+  - Finance
 ready_signal: true
 settings:
   allow_symbol_change:
@@ -28,14 +28,14 @@ settings:
         advanced: true
         help_text: Candle/bar/line style for the Advanced Chart widget.
         options:
-        - label: Candles
-          value: '1'
-        - label: Bars
-          value: '0'
-        - label: Line
-          value: '2'
-        - label: Area
-          value: '3'
+          - label: Candles
+            value: '1'
+          - label: Bars
+            value: '0'
+          - label: Line
+            value: '2'
+          - label: Area
+            value: '3'
         type: select
       schema_version: 1
   display_errors:
@@ -48,6 +48,57 @@ settings:
         advanced: true
         help_text: For debugging purposes, display errors on the screen instead of failing silently.
         type: boolean
+      schema_version: 1
+  heatmap_dataset:
+    type: string
+    default_value: SPX500
+    title: Heatmap Dataset (Stock Heatmap)
+    optional: true
+    help_text:
+      properties:
+        help_text: Which market the Stock Heatmap widget visualizes.
+        options:
+          - label: S&P 500 (US)
+            value: SPX500
+          - label: Nasdaq 100 (US)
+            value: NASDAQ100
+          - label: Dow Jones Industrial Average (US)
+            value: DJDJI
+          - label: All US Stocks
+            value: AllUSA
+          - label: FTSE 100 (UK)
+            value: UK100
+          - label: DAX (Germany)
+            value: DAX
+          - label: Nikkei 225 (Japan)
+            value: NI225
+          - label: Shenzhen Component (China)
+            value: SZSE399001
+          - label: Nifty 50 (India)
+            value: NIFTY50
+          - label: TSX (Canada)
+            value: TSX
+          - label: ASX 200 (Australia)
+            value: ASX200
+          - label: Ibovespa (Brazil)
+            value: IBOV
+        type: select
+      schema_version: 1
+  heatmap_grouping:
+    type: string
+    default_value: sector
+    title: Heatmap Grouping (Stock Heatmap)
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Group the Stock Heatmap widget's blocks by sector, or show a flat grid.
+        options:
+          - label: By Sector
+            value: sector
+          - label: No Grouping
+            value: no_group
+        type: select
       schema_version: 1
   hide_legend:
     type: string
@@ -92,24 +143,24 @@ settings:
         advanced: true
         help_text: Default time interval for the Advanced Chart widget.
         options:
-        - label: 1 minute
-          value: '1'
-        - label: 5 minutes
-          value: '5'
-        - label: 15 minutes
-          value: '15'
-        - label: 30 minutes
-          value: '30'
-        - label: 1 hour
-          value: '60'
-        - label: 4 hours
-          value: '240'
-        - label: 1 day
-          value: D
-        - label: 1 week
-          value: W
-        - label: 1 month
-          value: M
+          - label: 1 minute
+            value: '1'
+          - label: 5 minutes
+            value: '5'
+          - label: 15 minutes
+            value: '15'
+          - label: 30 minutes
+            value: '30'
+          - label: 1 hour
+            value: '60'
+          - label: 4 hours
+            value: '240'
+          - label: 1 day
+            value: D
+          - label: 1 week
+            value: W
+          - label: 1 month
+            value: M
         type: select
       schema_version: 1
   locale:
@@ -135,10 +186,10 @@ settings:
       properties:
         help_text: Dark or light mode for the widget.
         options:
-        - label: Dark
-          value: dark
-        - label: Light
-          value: light
+          - label: Dark
+            value: dark
+          - label: Light
+            value: light
         type: select
       schema_version: 1
   widget_type:
@@ -150,64 +201,13 @@ settings:
       properties:
         help_text: Which TradingView widget to display full-screen.
         options:
-        - label: Advanced Real-Time Chart
-          value: advanced_chart
-        - label: Symbol Overview
-          value: symbol_overview
-        - label: Stock Heatmap
-          value: stock_heatmap
-        - label: Crypto Heatmap
-          value: crypto_heatmap
+          - label: Advanced Real-Time Chart
+            value: advanced_chart
+          - label: Symbol Overview
+            value: symbol_overview
+          - label: Stock Heatmap
+            value: stock_heatmap
+          - label: Crypto Heatmap
+            value: crypto_heatmap
         type: select
-      schema_version: 1
-  heatmap_dataset:
-    type: string
-    default_value: SPX500
-    title: Heatmap Dataset (Stock Heatmap)
-    optional: true
-    help_text:
-      properties:
-        help_text: Which market the Stock Heatmap widget visualizes.
-        type: select
-        options:
-          - label: S&P 500 (US)
-            value: SPX500
-          - label: Nasdaq 100 (US)
-            value: NASDAQ100
-          - label: Dow Jones Industrial Average (US)
-            value: DJDJI
-          - label: All US Stocks
-            value: AllUSA
-          - label: FTSE 100 (UK)
-            value: UK100
-          - label: DAX (Germany)
-            value: DAX
-          - label: Nikkei 225 (Japan)
-            value: NI225
-          - label: Shenzhen Component (China)
-            value: SZSE399001
-          - label: Nifty 50 (India)
-            value: NIFTY50
-          - label: TSX (Canada)
-            value: TSX
-          - label: ASX 200 (Australia)
-            value: ASX200
-          - label: Ibovespa (Brazil)
-            value: IBOV
-      schema_version: 1
-  heatmap_grouping:
-    type: string
-    default_value: sector
-    title: Heatmap Grouping (Stock Heatmap)
-    optional: true
-    help_text:
-      properties:
-        advanced: true
-        help_text: Group the Stock Heatmap widget's blocks by sector, or show a flat grid.
-        type: select
-        options:
-          - label: By Sector
-            value: sector
-          - label: No Grouping
-            value: no_group
       schema_version: 1
