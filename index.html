@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TradingView Widget - Screenly App</title>
+    <script src="screenly.js?version=1"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div id="widget-root" class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+      </div>
+
+      <div id="error-screen" style="display: none">
+        <div class="error-card">
+          <div class="error-card-left">
+            <h2>Something went wrong</h2>
+            <p>
+              The TradingView widget could not be loaded. Please check your
+              configuration or contact your administrator.
+            </p>
+          </div>
+          <div class="error-card-right">
+            <div class="error-detail-label">Error details</div>
+            <p id="error-message" class="error-detail-message"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

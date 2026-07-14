@@ -1,0 +1,61 @@
+---
+syntax: manifest_v1
+description: QC manifest for the TradingView widget app (screenshot/automated testing)
+icon: static/img/icon.svg
+author: Screenly, Inc.
+categories:
+  - Finance
+ready_signal: true
+settings:
+  widget_type:
+    type: string
+    default_value: advanced_chart
+    title: Widget Type
+    optional: true
+    help_text:
+      properties:
+        help_text: Which TradingView widget to display full-screen.
+        type: select
+        options:
+          - label: Advanced Real-Time Chart
+            value: advanced_chart
+          - label: Symbol Overview
+            value: symbol_overview
+          - label: Stock Heatmap
+            value: stock_heatmap
+          - label: Crypto Heatmap
+            value: crypto_heatmap
+      schema_version: 1
+  symbol:
+    type: string
+    default_value: 'NASDAQ:AAPL'
+    title: Symbol
+    optional: true
+    help_text: |
+      The ticker to display, in EXCHANGE:SYMBOL format.
+  theme:
+    type: string
+    default_value: dark
+    title: Color Theme
+    optional: true
+    help_text:
+      properties:
+        help_text: Dark or light mode for the widget.
+        type: select
+        options:
+          - label: Dark
+            value: dark
+          - label: Light
+            value: light
+      schema_version: 1
+  display_errors:
+    type: string
+    default_value: 'false'
+    title: Display Errors
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: For debugging purposes, display errors on the screen instead of failing silently.
+        type: boolean
+      schema_version: 1
