@@ -1,52 +1,42 @@
 ---
 syntax: manifest_v1
-description: QC manifest for the TradingView widget app (screenshot/automated testing)
+description: Full-screen TradingView market widgets (Advanced Chart, Symbol Overview, Stock Heatmap, Crypto Heatmap)
 icon: static/img/icon.svg
 author: Screenly, Inc.
 categories:
   - Finance
 ready_signal: true
 settings:
-  widget_type:
+  allow_symbol_change:
     type: string
-    default_value: advanced_chart
-    title: Widget Type
+    default_value: 'false'
+    title: Allow Symbol Change
     optional: true
     help_text:
       properties:
-        help_text: Which TradingView widget to display full-screen.
-        type: select
-        options:
-          - label: Advanced Real-Time Chart
-            value: advanced_chart
-          - label: Symbol Overview
-            value: symbol_overview
-          - label: Stock Heatmap
-            value: stock_heatmap
-          - label: Crypto Heatmap
-            value: crypto_heatmap
+        advanced: true
+        help_text: Let viewers change the symbol on the Advanced Chart widget. Usually left off for unattended signage.
+        type: boolean
       schema_version: 1
-  symbol:
+  chart_style:
     type: string
-    default_value: 'NASDAQ:AAPL'
-    title: Symbol
-    optional: true
-    help_text: |
-      The ticker to display, in EXCHANGE:SYMBOL format.
-  theme:
-    type: string
-    default_value: dark
-    title: Color Theme
+    default_value: '1'
+    title: Chart Style
     optional: true
     help_text:
       properties:
-        help_text: Dark or light mode for the widget.
-        type: select
+        advanced: true
+        help_text: Candle/bar/line style for the Advanced Chart widget.
         options:
-          - label: Dark
-            value: dark
-          - label: Light
-            value: light
+          - label: Candles
+            value: '1'
+          - label: Bars
+            value: '0'
+          - label: Line
+            value: '2'
+          - label: Area
+            value: '3'
+        type: select
       schema_version: 1
   display_errors:
     type: string
@@ -58,4 +48,166 @@ settings:
         advanced: true
         help_text: For debugging purposes, display errors on the screen instead of failing silently.
         type: boolean
+      schema_version: 1
+  heatmap_dataset:
+    type: string
+    default_value: SPX500
+    title: Heatmap Dataset (Stock Heatmap)
+    optional: true
+    help_text:
+      properties:
+        help_text: Which market the Stock Heatmap widget visualizes.
+        options:
+          - label: S&P 500 (US)
+            value: SPX500
+          - label: Nasdaq 100 (US)
+            value: NASDAQ100
+          - label: Dow Jones Industrial Average (US)
+            value: DJDJI
+          - label: All US Stocks
+            value: AllUSA
+          - label: FTSE 100 (UK)
+            value: UK100
+          - label: DAX (Germany)
+            value: DAX
+          - label: Nikkei 225 (Japan)
+            value: NI225
+          - label: Shenzhen Component (China)
+            value: SZSE399001
+          - label: Nifty 50 (India)
+            value: NIFTY50
+          - label: TSX (Canada)
+            value: TSX
+          - label: ASX 200 (Australia)
+            value: ASX200
+          - label: Ibovespa (Brazil)
+            value: IBOV
+        type: select
+      schema_version: 1
+  heatmap_grouping:
+    type: string
+    default_value: sector
+    title: Heatmap Grouping (Stock Heatmap)
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Group the Stock Heatmap widget's blocks by sector, or show a flat grid.
+        options:
+          - label: By Sector
+            value: sector
+          - label: No Grouping
+            value: no_group
+        type: select
+      schema_version: 1
+  hide_legend:
+    type: string
+    default_value: 'false'
+    title: Hide Legend
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Hide the Advanced Chart widget's symbol legend overlay.
+        type: boolean
+      schema_version: 1
+  hide_side_toolbar:
+    type: string
+    default_value: 'true'
+    title: Hide Side Toolbar
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Hide the Advanced Chart widget's left-hand drawing toolbar.
+        type: boolean
+      schema_version: 1
+  hide_top_toolbar:
+    type: string
+    default_value: 'false'
+    title: Hide Top Toolbar
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Hide the Advanced Chart widget's top toolbar (interval/style controls).
+        type: boolean
+      schema_version: 1
+  interval:
+    type: string
+    default_value: D
+    title: Chart Interval
+    optional: true
+    help_text:
+      properties:
+        advanced: true
+        help_text: Default time interval for the Advanced Chart widget.
+        options:
+          - label: 1 minute
+            value: '1'
+          - label: 5 minutes
+            value: '5'
+          - label: 15 minutes
+            value: '15'
+          - label: 30 minutes
+            value: '30'
+          - label: 1 hour
+            value: '60'
+          - label: 4 hours
+            value: '240'
+          - label: 1 day
+            value: D
+          - label: 1 week
+            value: W
+          - label: 1 month
+            value: M
+        type: select
+      schema_version: 1
+  locale:
+    type: string
+    default_value: en
+    title: Locale
+    optional: true
+    help_text: |
+      Language code for the widget UI (e.g. en, fr, de, ja).
+  symbol:
+    type: string
+    default_value: NASDAQ:AAPL
+    title: Symbol
+    optional: true
+    help_text: |
+      The ticker to display, in EXCHANGE:SYMBOL format (e.g. NASDAQ:AAPL, BINANCE:BTCUSDT). Used by the Advanced Chart and Symbol Overview widgets (not the heatmaps, which show a whole market). Symbol Overview intentionally shows a single symbol only, since its multi-symbol tab switcher requires mouse input unattended signage can't provide.
+  theme:
+    type: string
+    default_value: dark
+    title: Color Theme
+    optional: true
+    help_text:
+      properties:
+        help_text: Dark or light mode for the widget.
+        options:
+          - label: Dark
+            value: dark
+          - label: Light
+            value: light
+        type: select
+      schema_version: 1
+  widget_type:
+    type: string
+    default_value: advanced_chart
+    title: Widget Type
+    optional: true
+    help_text:
+      properties:
+        help_text: Which TradingView widget to display full-screen.
+        options:
+          - label: Advanced Real-Time Chart
+            value: advanced_chart
+          - label: Symbol Overview
+            value: symbol_overview
+          - label: Stock Heatmap
+            value: stock_heatmap
+          - label: Crypto Heatmap
+            value: crypto_heatmap
+        type: select
       schema_version: 1
