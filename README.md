@@ -50,3 +50,11 @@ bun run deploy        # build + screenly edge-app deploy --path=dist/
 bun run test          # hermetic unit tests, no network access
 bun run test:live      # hits TradingView's real embed scripts, run on demand
 ```
+
+## Screenshots
+
+```bash
+bun run screenshots
+```
+
+This generates WebP screenshots for all supported resolutions into the `screenshots/` directory. Advanced Chart is captured at every resolution; the other widget types are captured at 1080p and 4K, landscape and portrait.
