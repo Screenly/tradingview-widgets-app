@@ -34,6 +34,12 @@ toggles the configuration options TradingView itself exposes.
 | `locale`              | all                 | `en`             |                                                                                                                                                        |
 | `display_errors`      | all                 | `false`          | Shows failures on-screen instead of failing silently                                                                                                   |
 
+The "Applies to" column is enforced by the manifest, not just documented here:
+each setting declares `depends_on` in its `help_text` schema, so the Screenly
+console only shows (and only saves) the settings that apply to the selected
+`widget_type`. `display_order` controls the sequence the fields render in,
+within the basic and advanced sections respectively.
+
 ## Development
 
 ```bash
