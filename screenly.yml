@@ -16,7 +16,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Let viewers change the symbol on the Advanced Chart widget. Usually left off for unattended signage.
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 6
+        help_text: Let viewers change the symbol on the chart. Usually left off for unattended signage.
         type: boolean
       schema_version: 1
   chart_style:
@@ -27,7 +32,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Candle/bar/line style for the Advanced Chart widget.
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 2
+        help_text: Candle/bar/line style for the chart.
         options:
           - label: Candles
             value: '1'
@@ -47,17 +57,23 @@ settings:
     help_text:
       properties:
         advanced: true
+        display_order: 8
         help_text: For debugging purposes, display errors on the screen instead of failing silently.
         type: boolean
       schema_version: 1
   heatmap_dataset:
     type: string
     default_value: SPX500
-    title: Heatmap Dataset (Stock Heatmap)
+    title: Heatmap Dataset
     optional: true
     help_text:
       properties:
-        help_text: Which market the Stock Heatmap widget visualizes.
+        depends_on:
+          setting: widget_type
+          values:
+            - stock_heatmap
+        display_order: 3
+        help_text: Which market the Stock Heatmap visualizes.
         options:
           - label: S&P 500 (US)
             value: SPX500
@@ -88,12 +104,17 @@ settings:
   heatmap_grouping:
     type: string
     default_value: sector
-    title: Heatmap Grouping (Stock Heatmap)
+    title: Heatmap Grouping
     optional: true
     help_text:
       properties:
         advanced: true
-        help_text: Group the Stock Heatmap widget's blocks by sector, or show a flat grid.
+        depends_on:
+          setting: widget_type
+          values:
+            - stock_heatmap
+        display_order: 7
+        help_text: Group the Stock Heatmap's blocks by sector, or show a flat grid.
         options:
           - label: By Sector
             value: sector
@@ -109,7 +130,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Hide the Advanced Chart widget's symbol legend overlay.
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 5
+        help_text: Hide the chart's symbol legend overlay.
         type: boolean
       schema_version: 1
   hide_side_toolbar:
@@ -120,7 +146,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Hide the Advanced Chart widget's left-hand drawing toolbar.
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 4
+        help_text: Hide the chart's left-hand drawing toolbar.
         type: boolean
       schema_version: 1
   hide_top_toolbar:
@@ -131,7 +162,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Hide the Advanced Chart widget's top toolbar (interval/style controls).
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 3
+        help_text: Hide the chart's top toolbar (interval/style controls).
         type: boolean
       schema_version: 1
   interval:
@@ -142,7 +178,12 @@ settings:
     help_text:
       properties:
         advanced: true
-        help_text: Default time interval for the Advanced Chart widget.
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+        display_order: 1
+        help_text: Default time interval for the chart.
         options:
           - label: 1 minute
             value: '1'
@@ -169,15 +210,28 @@ settings:
     default_value: en
     title: Locale
     optional: true
-    help_text: |
-      Language code for the widget UI (e.g. en, fr, de, ja).
+    help_text:
+      properties:
+        display_order: 5
+        help_text: Language code for the widget UI (e.g. en, fr, de, ja).
+        type: string
+      schema_version: 1
   symbol:
     type: string
     default_value: NASDAQ:AAPL
     title: Symbol
     optional: true
-    help_text: |
-      The ticker to display, in EXCHANGE:SYMBOL format (e.g. NASDAQ:AAPL, BINANCE:BTCUSDT). Used by the Advanced Chart and Symbol Overview widgets (not the heatmaps, which show a whole market). Symbol Overview intentionally shows a single symbol only, since its multi-symbol tab switcher requires mouse input unattended signage can't provide.
+    help_text:
+      properties:
+        depends_on:
+          setting: widget_type
+          values:
+            - advanced_chart
+            - symbol_overview
+        display_order: 2
+        help_text: The ticker to display, in EXCHANGE:SYMBOL format (e.g. NASDAQ:AAPL, BINANCE:BTCUSDT). Symbol Overview intentionally shows a single symbol only, since its multi-symbol tab switcher requires mouse input unattended signage can't provide.
+        type: string
+      schema_version: 1
   theme:
     type: string
     default_value: dark
@@ -185,6 +239,7 @@ settings:
     optional: true
     help_text:
       properties:
+        display_order: 4
         help_text: Dark or light mode for the widget.
         options:
           - label: Dark
@@ -200,7 +255,8 @@ settings:
     optional: true
     help_text:
       properties:
-        help_text: Which TradingView widget to display full-screen.
+        display_order: 1
+        help_text: Which TradingView widget to display full-screen. The settings below change to match.
         options:
           - label: Advanced Real-Time Chart
             value: advanced_chart
