@@ -1,6 +1,5 @@
 ---
 syntax: manifest_v1
-id: 01KZPBC3T88P2YJNRDW9BHWKCJ
 description: Full-screen TradingView market widgets (Advanced Chart, Symbol Overview, Stock Heatmap, Crypto Heatmap)
 icon: https://playground.srly.io/edge-apps/icons/tradingview.svg
 author: Screenly, Inc.
