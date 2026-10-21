@@ -1,4 +1,8 @@
+[![Version](https://img.shields.io/github/v/release/Screenly/tradingview-widgets-app)](https://github.com/Screenly/tradingview-widgets-app/releases/latest)
+
 # TradingView Widget - Screenly App
+
+![TradingView Widget - Screenly App Preview](/screenshots/advanced-chart-1920x1080.webp)
 
 A full-screen Screenly app that displays a TradingView market widget.
 
