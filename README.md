@@ -68,3 +68,19 @@ bun run screenshots
 ```
 
 This generates WebP screenshots for all supported resolutions into the `screenshots/` directory. Advanced Chart is captured at every resolution; the other widget types are captured at 1080p and 4K, landscape and portrait.
+
+## Releasing
+
+Pushes to `main` deploy to stage automatically. To release to production, tag a commit on `main` and push the tag (the workflow refuses tags not on `main`):
+
+```bash
+git checkout main && git pull
+git tag v26.10.0
+git push origin v26.10.0
+```
+
+Then publish a GitHub Release whose notes list the pull requests merged since the previous release. Add `--draft` to review the notes before publishing:
+
+```bash
+gh release create v26.10.0 --verify-tag --generate-notes --title v26.10.0
+```
